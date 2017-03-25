@@ -1,0 +1,39 @@
+---
+title: "25 March 2017"
+author: "DK"
+date: "25 March 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The interactive map 
+
+This is an R Markdown document about my Lisa's born city. We will find out where she is hiding in.
+
+```{r,echo=FALSE, message=FALSE}
+library(leaflet)
+Herland<-makeIcon(
+  iconUrl="http://www.simpsoncrazy.com/content/pictures/lisa/LisaSimpson13.gif",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+Herlandlong<- data.frame(
+  lat=c(-28.0323332, -28.0347381,-28.0360651 ),
+  lng=c(153.419724,153.4243612, 153.4180114))
+
+Herlandlong %>%
+  leaflet() %>%
+  setView(.,lng=153.4264703,lat=-28.031725,zoom=14) %>%
+  addTiles() %>%
+  addMarkers(icon=Herland) %>%
+  addTiles() %>%
+  addMarkers(lat=-28.0347381, lng=153.4243612,
+              popup="I'm here!")
+
+```
+
+
